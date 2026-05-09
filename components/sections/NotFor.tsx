@@ -2,72 +2,69 @@
 
 const notFor = [
   {
-    icon: "🎓",
-    title: "People who want to learn prompting",
-    desc: "This isn't a course on how to write better prompts. There are great ones out there. This is for people who want a working system, not more theory.",
+    id: "01",
+    title: "You haven't actually used Claude yet.",
+    desc: "Spend a week with the free content first. Come back when you've shipped one workflow and want to level up.",
   },
   {
-    icon: "🛋️",
-    title: "People who want to watch, not build",
-    desc: "Every call is hands-on. You're at the keyboard. If you want pre-recorded walkthroughs you can watch at 2x speed, this isn't that.",
+    id: "02",
+    title: "You want me to build it while you watch.",
+    desc: "That's agency work. This is pair-building — you're at the keyboard every call. If you don't want that, you want a freelancer, not me.",
   },
   {
-    icon: "🤷",
-    title: "People with no clear workflows to automate",
-    desc: "We need something to work with. If you don't yet have repeatable work that takes time, there's nothing to build an agent around. Come back when you do.",
+    id: "03",
+    title: "Your business runs entirely in-person.",
+    desc: "Restaurants, storefronts, manual trades. Claude can help with the ops around your business, but not the core work. Wrong call for now.",
   },
 ];
 
 export default function NotFor() {
   return (
-    <section className="min-h-screen flex flex-col justify-center py-28 bg-[#0e0e11] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(200,241,53,0.03)_0%,transparent_60%)] pointer-events-none" />
+    <section className="py-28 bg-cream relative">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="bg-[#111115] rounded-2xl p-10 max-w-4xl mx-auto">
+          {/* HONESTY GATE badge */}
+          <div className="inline-flex items-center gap-1.5 bg-lime/[0.12] border border-lime/25 rounded-full px-4 py-1.5 mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-lime" />
+            <span className="font-mono-custom text-[10px] font-bold tracking-widest uppercase text-lime">
+              Honesty Gate
+            </span>
+          </div>
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="text-center max-w-lg mx-auto mb-16">
-          <p className="font-mono-custom text-[11px] font-semibold tracking-[0.15em] uppercase text-white/30 mb-5">
-            Honest filter
-          </p>
-          <h2 className="font-display font-bold text-[clamp(28px,4.5vw,52px)] leading-[1.1] tracking-tight text-white">
-            Three people{" "}
-            <span className="font-serif italic font-normal text-white/40">this isn&apos;t for.</span>
+          <h2 className="font-display font-bold text-[clamp(26px,4vw,46px)] leading-[1.1] tracking-tight text-white mb-3">
+            Three people this{" "}
+            <span className="text-lime italic font-normal font-serif">isn&apos;t for.</span>
           </h2>
-        </div>
+          <p className="text-white/40 text-[15px] leading-relaxed mb-10">
+            I&apos;d rather disqualify you here than waste your $497 on a call that
+            shouldn&apos;t happen. If any of these are you, the answer is{" "}
+            <span className="text-lime underline">no — for now</span>.
+          </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
-          {notFor.map((item, i) => (
-            <div
-              key={i}
-              className="bg-[#0b0b0d] border border-white/[0.07] rounded-2xl p-8 relative overflow-hidden group hover:border-red-500/20 transition-all duration-300"
-            >
-              {/* Red accent line */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-red-500/0 group-hover:bg-red-500/30 transition-colors duration-300" />
+          {/* Divider */}
+          <div className="h-px bg-white/[0.08] mb-8" />
 
-              <div className="text-4xl mb-6">{item.icon}</div>
-              <h3 className="font-display font-bold text-lg text-white/70 mb-4 leading-snug">
-                {item.title}
-              </h3>
-              <p className="text-white/35 text-[13px] leading-relaxed">{item.desc}</p>
-
-              {/* Strikethrough overlay effect */}
-              <div className="absolute top-7 right-7 w-6 h-6 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-                <span className="text-red-400/60 text-xs font-bold">✕</span>
+          {/* Three items */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            {notFor.map((item) => (
+              <div key={item.id}>
+                <span className="font-mono-custom text-[11px] font-bold text-white/25 tracking-widest">
+                  / {item.id}
+                </span>
+                <h3 className="font-display font-bold text-[17px] text-white leading-snug mt-2 mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-white/40 text-[13px] leading-relaxed">{item.desc}</p>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Flip side: who it IS for */}
-        <div className="bg-lime/[0.05] border border-lime/15 rounded-2xl p-8 max-w-2xl mx-auto text-center">
-          <p className="font-mono-custom text-[11px] font-semibold tracking-[0.15em] uppercase text-lime/50 mb-4">
-            Who it is for
-          </p>
-          <p className="font-display font-bold text-xl text-white mb-3">
-            Founders and operators who already have real work — and want Claude running more of it.
-          </p>
-          <p className="text-white/40 text-[14px] leading-relaxed">
-            If you have repeatable workflows, recurring tasks, and a business that needs more
-            leverage — you&apos;re in the right place.
+          {/* Divider */}
+          <div className="h-px bg-white/[0.08] mb-6" />
+
+          <p className="text-[15px] text-white/50">
+            If none of these are you —{" "}
+            <span className="text-lime font-semibold">let&apos;s go.</span>
           </p>
         </div>
       </div>

@@ -24,8 +24,8 @@ export default function Home() {
         <SystemParts />
         <Process />
         <ThreeQuestions />
-        <Testimonial />
         <Operators />
+        <Testimonial />
         <NotFor />
         <Pricing />
         <EightSystems />

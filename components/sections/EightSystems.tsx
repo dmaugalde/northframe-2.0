@@ -1,63 +1,88 @@
 "use client";
+import { useState } from "react";
 
-const systems = [
-  { name: "Email / Inbox",         icon: "📧", pain: "3–5 hrs/wk triaging, drafting, following up" },
-  { name: "CRM & Lead Tracking",   icon: "📋", pain: "Manual entry, inconsistent qualification" },
-  { name: "Content & Copywriting", icon: "✍️", pain: "Blank page every time, no repeatable voice" },
-  { name: "Reporting & Analytics", icon: "📊", pain: "Pulling data, formatting slides, losing weekends" },
-  { name: "Client Onboarding",     icon: "🤝", pain: "Different every time, always something missing" },
-  { name: "Research & Monitoring", icon: "🔍", pain: "Checking manually, no structured summaries" },
-  { name: "Proposals & Contracts", icon: "📄", pain: "Starting from scratch for every prospect" },
-  { name: "Internal Knowledge",    icon: "🧠", pain: "Answering the same questions, losing context" },
+const faqs = [
+  {
+    q: "Is this just expensive prompting coaching?",
+    a: "No. Prompting is a tactic. We're building infrastructure — Skills that run in your Claude account, agents that trigger without you, routines that execute on a schedule. You leave with a system, not a library of prompts.",
+  },
+  {
+    q: "What if I'm not technical at all?",
+    a: "Good. Most of my best builders aren't. Claude Skills don't require code. You need to be able to think clearly about your own business — that's it. I'll handle everything else on the first call.",
+  },
+  {
+    q: "What if I don't have a clear workflow to build?",
+    a: "That's what Week 1 is for. We run the filter on everything on your plate and find what belongs in Claude. Most founders come in with no idea and leave with 6 candidates. The filter does the work.",
+  },
+  {
+    q: "What does 'you at the keyboard every call' mean exactly?",
+    a: "You're the one doing the building — I'm watching, guiding, correcting. It's not a demo and it's not passive. The reason you stay capable after we finish is because you built it yourself.",
+  },
+  {
+    q: "What happens after the four weeks?",
+    a: "You know how to extend the system. The Skills you built keep running. You have the recordings, the documentation, and the ability to add new workflows on your own. Most people don't need me again — that's the point.",
+  },
+  {
+    q: "Is $2,950 the right investment right now?",
+    a: "Only you can answer that. But ask yourself what one bad hire costs, or one quarter of doing admin manually. If your time is worth $150/hr and we save 5 hours a week, you're break-even in under a month.",
+  },
+  {
+    q: "What if Claude releases something new mid-build?",
+    a: "We've already been through several major releases. Skills is stable and the patterns we're building on have a long shelf life. If something significant drops, we adjust — that's part of having someone alongside who's tracking it full-time.",
+  },
+  {
+    q: "Can you just build it for me instead?",
+    a: "That's agency work, and the answer is no. The reason this works long-term is because you built it. If you want someone to hand you a finished system with no understanding of how it runs, that's a freelancer — not what this is.",
+  },
 ];
 
 export default function EightSystems() {
-  return (
-    <section className="min-h-screen flex flex-col justify-center py-28 bg-[#0e0e11] relative">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 items-center">
-          {/* Left */}
-          <div>
-            <p className="font-mono-custom text-[11px] font-semibold tracking-[0.15em] uppercase text-white/30 mb-5">
-              Already in your stack
-            </p>
-            <h2 className="font-display font-bold text-[clamp(26px,4vw,46px)] leading-[1.1] tracking-tight text-white mb-6">
-              The eight systems you&apos;re already running{" "}
-              <span className="font-serif italic font-normal text-white/35">
-                give less than they take.
-              </span>
-            </h2>
-            <p className="text-white/40 text-[15px] leading-relaxed mb-8">
-              Every one of these is a candidate for a Claude layer. Most operators have
-              at least three or four that are ripe for automation. We&apos;ll identify which
-              ones give you the fastest return in week one.
-            </p>
-            <div className="flex items-center gap-3 text-[13px] text-white/35">
-              <span className="w-2 h-2 rounded-full bg-lime shrink-0" />
-              We typically fully automate 2–3 of these in four weeks.
-            </div>
-          </div>
+  const [open, setOpen] = useState<number | null>(null);
 
-          {/* Right: system list */}
-          <div className="space-y-2">
-            {systems.map((s, i) => (
-              <div
-                key={i}
-                className="group flex items-center gap-5 bg-[#0b0b0d] hover:bg-[#111115] border border-white/[0.06] hover:border-white/10 rounded-xl px-5 py-4 transition-all duration-200 cursor-default"
+  return (
+    <section className="py-28 bg-cream relative">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Label */}
+        <div className="flex items-center gap-2 mb-7">
+          <span className="w-2 h-2 rounded-full bg-lime shrink-0" />
+          <span className="font-mono-custom text-[11px] font-semibold tracking-[0.15em] uppercase text-ink-mid">
+            Before You Apply
+          </span>
+        </div>
+
+        <h2 className="font-display font-bold text-[clamp(28px,4.5vw,52px)] leading-[1.1] tracking-tight text-ink mb-12 max-w-2xl">
+          The eight questions you&apos;re already running in your head.
+        </h2>
+
+        {/* Divider */}
+        <div className="h-px bg-cream-dark mb-8" />
+
+        <div className="max-w-3xl">
+          {faqs.map((faq, i) => (
+            <div key={i} className="border-b border-cream-dark">
+              <button
+                className="w-full flex items-start justify-between gap-6 py-6 text-left group"
+                onClick={() => setOpen(open === i ? null : i)}
               >
-                <span className="text-xl shrink-0">{s.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="font-display font-semibold text-white text-[14px] mb-0.5">{s.name}</p>
-                  <p className="text-white/30 text-[12px] truncate">{s.pain}</p>
-                </div>
-                <div className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="font-mono-custom text-[10px] text-lime bg-lime/10 border border-lime/20 rounded-full px-2.5 py-1">
-                    automate →
+                <div className="flex items-start gap-4">
+                  <span className="font-mono-custom text-[11px] font-bold text-ink-mid/30 tracking-widest shrink-0 mt-0.5">
+                    / {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-display font-bold text-[17px] text-ink leading-snug group-hover:text-ink/70 transition-colors">
+                    {faq.q}
                   </span>
                 </div>
-              </div>
-            ))}
-          </div>
+                <span className={`font-mono-custom text-[20px] text-ink-mid shrink-0 transition-transform duration-200 ${open === i ? "rotate-45" : ""}`}>
+                  +
+                </span>
+              </button>
+              {open === i && (
+                <div className="pb-6 pl-[52px]">
+                  <p className="text-ink-mid text-[15px] leading-relaxed">{faq.a}</p>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>

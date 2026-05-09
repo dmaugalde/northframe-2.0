@@ -4,95 +4,153 @@ const parts = [
   {
     id: "01",
     title: "Skills",
-    anchor: "skills",
-    desc: "Modular Claude instructions that encode how you think, write, and decide — so every output sounds like you, not a generic AI.",
-    items: ["Tone & voice calibration", "Domain knowledge injection", "Output format control", "Decision frameworks"],
-    quote: "The biggest unlock was realising Claude could sound like my best employee — not a tool I'm fighting.",
-    author: "R.T., Operations lead",
+    subtitle: "The Muscle Memory",
+    desc: "Prompts Claude runs from — triage your inbox, draft your content, flag your numbers. Written once. Used for years. Extended by writing another prompt.",
+    items: ["gmail-triage.md", "weekly-brief.md", "money-monitor.md"],
+    extra: "+ 3 custom to you",
   },
   {
     id: "02",
     title: "Agents",
-    anchor: "agents",
-    desc: "Automated pipelines that handle repeatable work end-to-end — triggered by events, scheduled, or on-demand.",
-    items: ["Lead qualification", "Content repurposing", "Data enrichment", "Report generation"],
-    quote: "Two agents now do what used to take my team 12 hours a week. Every week.",
-    author: "S.K., Founder",
+    subtitle: "The Brain",
+    desc: "Composite workflows that read context across skills and decide — not 'draft me an email' but 'handle Monday morning.' One or two per Founder OS, custom to what actually needs judgment in your work.",
+    agent: "monday-operator",
+    agentDesc: "reads your calendar, inbox, and Stripe — writes your Monday brief at 7am.",
   },
   {
     id: "03",
     title: "Routines",
-    anchor: "routines",
-    desc: "Daily, weekly, and monthly operating rhythms backed by Claude — so your system gets smarter as your business grows.",
-    items: ["Morning briefings", "Weekly reviews", "Async decision logs", "Performance summaries"],
-    quote: "My Monday morning used to cost me two hours. Now it's a three-minute read.",
-    author: "M.D., Agency owner",
+    subtitle: "The Clock",
+    desc: "Your system on a schedule. Monday brief, Friday close-out, lead follow-ups on day 3 and day 7. All running without a reminder, in your voice, forever.",
+    schedule: [
+      { days: "MON", time: "07:00" },
+      { days: "FRI", time: "17:00" },
+      { days: "TUE, THU", time: "10:00" },
+      { days: "MON, WED", time: "09:00" },
+    ],
   },
   {
     id: "04",
     title: "You",
-    anchor: "you",
-    desc: "The system is built around your actual workflows — not a template, not a demo. Every call is hands-on in your real stack.",
-    items: ["Custom to your tools", "Built in your accounts", "You own everything", "No vendor lock-in"],
-    quote: "I didn't want another course. I wanted someone to sit down and build it with me. That's exactly what this is.",
-    author: "P.M., Consultant",
+    subtitle: "The Operator",
+    desc: "Everything above runs for you. You direct, review, and extend. Add a new workflow by writing a prompt — I teach you how during Week 4. The system is the team.",
+    tagline: "You are the founder. The system is the team.",
   },
 ];
 
 export default function SystemParts() {
   return (
-    <section id="system" className="min-h-screen flex flex-col justify-center py-28 relative">
+    <section id="system" className="py-28 bg-cream relative">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center max-w-xl mx-auto mb-16">
-          <p className="font-mono-custom text-[11px] font-semibold tracking-[0.15em] uppercase text-white/30 mb-5">
-            The system
-          </p>
-          <h2 className="font-display font-bold text-[clamp(28px,4.5vw,52px)] leading-[1.1] tracking-tight text-white">
+        {/* Header */}
+        <div className="mb-16">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="w-2 h-2 rounded-full bg-lime shrink-0" />
+            <span className="font-mono-custom text-[11px] font-semibold tracking-[0.15em] uppercase text-ink-mid">
+              The Shape of a Founder OS
+            </span>
+          </div>
+          <h2 className="font-display font-bold text-[clamp(28px,4.5vw,54px)] leading-[1.1] tracking-tight text-ink">
             Four parts.{" "}
-            <span className="font-serif italic font-normal text-lime">One system.</span>
+            <span className="text-lime">One system.</span>
             <br />
             Each one built for you.
           </h2>
+          <p className="text-ink-mid text-[15px] leading-relaxed mt-4 max-w-xl">
+            Every Founder OS has the same four parts. The specifics — which
+            skills, which agents, which schedule — we design together in Session
+            1, around your business.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {parts.map((p) => (
-            <div
-              key={p.id}
-              id={p.anchor}
-              className="group bg-[#111115] border border-white/[0.07] rounded-2xl p-6 flex flex-col gap-5 hover:border-white/15 transition-all duration-300"
-            >
+        {/* 4-column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-cream-dark rounded-2xl overflow-hidden mb-12">
+          {parts.map((p, i) => (
+            <div key={p.id} className="bg-cream p-7 relative">
+              {/* Big watermark number */}
+              <div className="font-display font-bold text-[80px] leading-none text-black/[0.04] absolute top-2 right-4 select-none pointer-events-none">
+                {p.id}
+              </div>
+
               {/* Header */}
-              <div className="flex items-start justify-between">
-                <span className="font-mono-custom text-[11px] text-white/25 tracking-widest">{p.id}</span>
-                <span className="font-display font-bold text-lg text-white">{p.title}</span>
-              </div>
-
-              {/* Desc */}
-              <p className="text-white/40 text-[13px] leading-relaxed flex-1">{p.desc}</p>
-
-              {/* Items */}
-              <ul className="space-y-2">
-                {p.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-[13px] text-white/55">
-                    <span className="w-1 h-1 rounded-full bg-lime shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Divider */}
-              <div className="h-px bg-white/[0.06]" />
-
-              {/* Quote */}
-              <div>
-                <p className="text-white/35 text-[12px] leading-relaxed italic mb-2">
-                  &ldquo;{p.quote}&rdquo;
+              <div className="mb-5">
+                <span className="font-mono-custom text-[10px] font-bold tracking-widest uppercase text-ink-mid/50">
+                  / {p.id}
+                </span>
+                <h3 className="font-display font-bold text-[20px] text-ink mt-1">{p.title}</h3>
+                <p className="font-mono-custom text-[10px] font-semibold tracking-widest uppercase text-ink-mid/50 mt-0.5">
+                  {p.subtitle}
                 </p>
-                <p className="font-mono-custom text-[10px] text-white/20 tracking-wide">— {p.author}</p>
               </div>
+
+              {/* Description */}
+              <p className="text-ink-mid text-[13px] leading-relaxed mb-6">{p.desc}</p>
+
+              {/* Bottom content varies per part */}
+              {p.items && (
+                <div className="space-y-1.5">
+                  {p.items.map((item) => (
+                    <div key={item} className="font-mono-custom text-[12px] text-ink-mid/60 bg-cream-dark rounded-md px-3 py-1.5">
+                      {item}
+                    </div>
+                  ))}
+                  {p.extra && (
+                    <div className="font-mono-custom text-[11px] text-lime font-semibold mt-2">
+                      {p.extra}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {p.agent && (
+                <div className="bg-cream-dark rounded-lg p-4 border-l-2 border-lime">
+                  <span className="font-mono-custom text-[11px] font-bold text-ink">{p.agent}</span>
+                  <p className="font-mono-custom text-[11px] text-ink-mid/60 mt-1">{p.agentDesc}</p>
+                </div>
+              )}
+
+              {p.schedule && (
+                <div className="space-y-1.5">
+                  {p.schedule.map((s, si) => (
+                    <div key={si} className="flex items-center justify-between font-mono-custom text-[11px]">
+                      <span className="text-ink-mid/50">{s.days}</span>
+                      <span className="text-ink font-semibold">{s.time}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {p.tagline && (
+                <div className="bg-ink rounded-lg p-4">
+                  <p className="font-mono-custom text-[12px] text-cream/70 leading-relaxed">
+                    {p.tagline}
+                  </p>
+                </div>
+              )}
             </div>
           ))}
+        </div>
+
+        {/* Luuk quote card */}
+        <div className="bg-white border border-cream-dark rounded-2xl p-8 max-w-xl">
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-full bg-lime flex items-center justify-center shrink-0">
+              <span className="font-mono-custom text-[14px] font-bold text-black">L</span>
+            </div>
+            <div>
+              <p className="text-ink text-[16px] leading-relaxed font-medium mb-3">
+                &ldquo;The shape is what&apos;s constant. Every other Founder OS on
+                earth has the same four parts.{" "}
+                <span className="font-bold">
+                  Yours will share nothing else with them.
+                </span>
+                &rdquo;
+              </p>
+              <p className="font-mono-custom text-[11px] text-ink-mid uppercase tracking-widest">
+                Luuk · Founder, Buildloop
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

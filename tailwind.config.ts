@@ -15,6 +15,11 @@ const config: Config = {
         border:   "rgba(255,255,255,0.08)",
         lime:     "#c8f135",
         "lime-dim": "rgba(200,241,53,0.12)",
+        cream:    "#f0efe9",
+        "cream-dark": "#e8e7e1",
+        ink:      "#1a1a1a",
+        "ink-mid": "#555555",
+        "ink-dim": "#888888",
       },
       fontFamily: {
         display: ["Syne", "sans-serif"],

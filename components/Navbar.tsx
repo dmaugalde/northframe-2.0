@@ -2,22 +2,15 @@
 import { useState, useEffect } from "react";
 
 const links = [
-  { label: "Skills",    href: "#skills" },
-  { label: "Agents",    href: "#agents" },
-  { label: "Routines",  href: "#routines" },
-  { label: "Process",   href: "#process" },
-  { label: "Pricing",   href: "#pricing" },
+  { label: "Problem",    href: "#problem" },
+  { label: "Shift",      href: "#shift" },
+  { label: "Examples",   href: "#examples" },
+  { label: "Four Weeks", href: "#four-weeks" },
+  { label: "Pricing",    href: "#pricing" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive]     = useState("");
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const ids = links.map((l) => l.href.slice(1));
@@ -25,7 +18,7 @@ export default function Navbar() {
       (entries) => {
         entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
       },
-      { threshold: 0.4 }
+      { threshold: 0.3 }
     );
     ids.forEach((id) => {
       const el = document.getElementById(id);
@@ -40,33 +33,28 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0b0b0dcc] backdrop-blur-xl border-b border-white/[0.06]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
+    <div className="fixed top-4 left-0 right-0 z-50 px-4">
+      <header className="max-w-6xl mx-auto bg-[#111111] backdrop-blur-xl rounded-2xl px-5 h-[58px] flex items-center justify-between border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         {/* Logo */}
         <button
           onClick={() => scrollTo("#hero")}
-          className="font-display text-base font-bold tracking-tight flex items-center gap-2"
+          className="flex items-center gap-2.5 font-mono-custom text-[13px] font-bold text-white tracking-tight shrink-0"
         >
-          <span className="w-2 h-2 rounded-full bg-lime inline-block" />
-          Founder OS
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
+            <rect x="1.5" y="1.5" width="13" height="13" rx="2.5" stroke="#c8f135" strokeWidth="1.5"/>
+            <rect x="4.5" y="4.5" width="7" height="7" rx="1.5" fill="#c8f135"/>
+          </svg>
+          <span className="text-white/90">FOUNDER <span className="text-white">OS</span></span>
         </button>
 
         {/* Nav Links */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-6">
           {links.map((l) => (
             <button
               key={l.href}
               onClick={() => scrollTo(l.href)}
-              className={`font-mono-custom text-[13px] font-medium tracking-wide transition-colors duration-200 ${
-                active === l.href.slice(1)
-                  ? "text-white"
-                  : "text-white/40 hover:text-white/80"
+              className={`font-mono-custom text-[11px] font-medium tracking-wider uppercase transition-colors duration-200 ${
+                active === l.href.slice(1) ? "text-white" : "text-white/40 hover:text-white/80"
               }`}
             >
               {l.label}
@@ -74,14 +62,22 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <button
-          onClick={() => scrollTo("#pricing")}
-          className="bg-lime text-black font-mono-custom text-[13px] font-bold px-5 py-2.5 rounded-lg hover:bg-lime/90 transition-all duration-200 hover:-translate-y-px"
-        >
-          Book a Call →
-        </button>
-      </div>
-    </header>
+        {/* Right side */}
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="hidden md:flex items-center gap-1.5 bg-white/[0.05] border border-white/[0.08] rounded-full px-3 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse shrink-0" />
+            <span className="font-mono-custom text-[10px] font-semibold text-white/40 tracking-widest uppercase">
+              Blueprint · Soon
+            </span>
+          </div>
+          <button
+            onClick={() => scrollTo("#pricing")}
+            className="bg-lime text-black font-mono-custom text-[12px] font-bold px-4 py-2 rounded-full hover:bg-lime/90 transition-all duration-200 whitespace-nowrap"
+          >
+            Apply →
+          </button>
+        </div>
+      </header>
+    </div>
   );
 }
